@@ -1,0 +1,36 @@
+name: Child Pipeline B
+
+on:
+  push:
+    paths:
+      - src/b
+      - src/index.js
+      - package.json
+      - pnpm-lock.yaml
+      - .github/workflows/*
+      - '!.github/workflows/pipeline-a.yml'
+
+jobs:
+  prettier:
+    uses: ./.github/workflows/prettier.yml
+    with:
+      node_version: lts/hydrogen
+      pnpm_version: 7.x
+
+  units:
+    uses: ./.github/workflows/units.yml
+    needs: [prettier]
+    if: needs.prettier.result == 'success'
+    with:
+      module: b
+      node_version: lts/hydrogen
+      pnpm_version: 7.x
+
+  release:
+    uses: ./.github/workflows/release.yml
+    needs: [units]
+    if: needs.units.result == 'success'
+    with:
+      module: b
+      node_version: lts/hydrogen
+      pnpm_version: 7.x

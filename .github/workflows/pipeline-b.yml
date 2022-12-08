@@ -3,7 +3,7 @@ name: Child Pipeline B
 on:
   push:
     paths:
-      - src/b
+      - src/b/**
       - src/index.js
       - package.json
       - pnpm-lock.yaml

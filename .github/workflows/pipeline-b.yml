@@ -1,0 +1,35 @@
+name: Child Pipeline B
+
+on:
+  workflow_call:
+    inputs:
+      node_version:
+        type: string
+        required: true
+      pnpm_version:
+        type: string
+        required: true
+
+jobs:
+  a:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ inputs.node_version }}
+      - uses: pnpm/action-setup@v2
+        with:
+          version: ${{ inputs.pnpm_version }}
+
+      - name: Install Dependencies
+        run: pnpmi 
+
+      - name: Build
+        run: sleep 20 && pnpm prettier:check
+
+      - name: Test
+        run: sleep 20 && pnpm test:unit:b
+
+      - name: Deploy
+        run: pnpm release:b

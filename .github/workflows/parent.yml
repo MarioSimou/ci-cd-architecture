@@ -1,0 +1,19 @@
+name: Parent Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  a:
+    uses: ./.github/workflows/pipeline-a.yml
+    with:
+      node_version: lts/hydrogen
+      pnpm_version: 7.x
+
+  b:
+    uses: ./.github/workflows/pipeline-b.yml
+    with:
+      node_version: lts/hydrogen
+      pnpm_version: 7.x

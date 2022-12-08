@@ -1,0 +1,22 @@
+{
+  "name": "ci-cd-architectures",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "prettier": "prettier --loglevel warn '.'",
+    "prettier:check": "pnpm prettier --check",
+    "prettier:format": "pnpm prettier --write",
+    "test:unit:a": "node --test ./src/a/index.spec.js",
+    "test:unit:b": "node --test ./src/b/index.spec.js",
+    "release:a": "echo 'Deploying module a...'",
+    "release:b": "echo 'Deploying module b...'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "prettier": "^2.8.0"
+  }
+}

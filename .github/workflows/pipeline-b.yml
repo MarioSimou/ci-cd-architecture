@@ -5,7 +5,7 @@ on:
     branches:
       - feature/*
     paths:
-      - ./src/b
+      - ./src/a/**
       - ./src/index.js
 
 jobs:

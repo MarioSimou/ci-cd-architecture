@@ -2,8 +2,7 @@ name: Child Pipeline A
 
 on:
   workflow_run:
-    workflows:
-      - 'Prettier'
+    workflows: [Prettier]
     types:
       - completed
 

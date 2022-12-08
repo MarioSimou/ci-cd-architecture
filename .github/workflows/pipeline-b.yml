@@ -23,7 +23,7 @@ jobs:
           version: ${{ inputs.pnpm_version }}
 
       - name: Install Dependencies
-        run: pnpmi 
+        run: pnpm i 
 
       - name: Build
         run: sleep 20 && pnpm prettier:check

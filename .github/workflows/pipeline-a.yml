@@ -6,8 +6,6 @@ on:
       - 'Prettier'
     types:
       - completed
-    branches:
-      - '!main'
 
 jobs:
   a:

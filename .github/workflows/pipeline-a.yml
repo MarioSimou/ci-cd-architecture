@@ -1,14 +1,12 @@
 name: Child Pipeline A
 
 on:
-  workflow_call:
-    inputs:
-      node_version:
-        type: string
-        required: true
-      pnpm_version:
-        type: string
-        required: true
+  push:
+    branches:
+      - feature/*
+    paths:
+      - ./src/a
+      - ./src/index.js
 
 jobs:
   a:

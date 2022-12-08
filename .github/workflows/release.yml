@@ -1,8 +1,11 @@
-name: Prettier
+name: Release
 
 on:
   workflow_call:
     inputs:
+      module:
+        type: string
+        required: true
       node_version:
         type: string
         required: true
@@ -36,5 +39,5 @@ jobs:
       - name: Install Dependencies
         run: pnpm i
 
-      - name: Prettier
-        run: pnpm prettier:check
+      - name: Units
+        run: pnpm "release:${{inputs.module}}"

@@ -1,25 +1,29 @@
-name: Child Pipeline B
+name: Test
 
 on:
-  workflow_run:
-    workflows: [Prettier]
-    types:
-      - completed
-    branches:
-      - 'b/**'
+  workflow_call:
+    inputs:
+      module:
+        type: string
+        required: true
+      node_version:
+        type: string
+        required: true
+      pnpm_version:
+        type: string
+        required: true
 
 jobs:
-  b:
+  prettier:
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: lts/hydrogen
+          node-version: ${{ inputs.node_version }}
       - uses: pnpm/action-setup@v2
         with:
-          version: 7.x
+          version: ${{ inputs.pnpm_version }}
 
       - name: Get pnpm store path
         id: pnpm-store-path
@@ -35,8 +39,5 @@ jobs:
       - name: Install Dependencies
         run: pnpm i
 
-      - name: Test
-        run: sleep 20 && pnpm test:unit:b
-
-      - name: Deploy
-        run: pnpm release:b
+      - name: Units
+        run: pnpm "test:unit:${{inputs.module}}"

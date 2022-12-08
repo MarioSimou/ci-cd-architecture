@@ -7,6 +7,9 @@ on:
     paths:
       - 'src/b/**'
       - 'src/index.js'
+      - '.github/workflows/**'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
 
 jobs:
   a:
@@ -28,8 +31,8 @@ jobs:
         id: cache-primes
         uses: actions/cache@v3
         with:
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yml')}}
           path: ${{ steps.pnpm-store-path.outputs.path }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml')}}
           restore-keys: ${{ runner.os}}-pnpm-store
 
       - name: Install Dependencies

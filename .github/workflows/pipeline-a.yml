@@ -7,6 +7,9 @@ on:
     paths:
       - 'src/a/**'
       - 'src/index.js'
+      - '.github/workflows/**'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
 
 jobs:
   a:
@@ -28,7 +31,7 @@ jobs:
         id: cache-primes
         uses: actions/cache@v3
         with:
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yml')}}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml')}}
           path: ${{ steps.pnpm-store-path.outputs.path }}
           restore-keys: ${{ runner.os}}-pnpm-store
 

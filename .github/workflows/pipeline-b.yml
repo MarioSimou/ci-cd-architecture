@@ -5,7 +5,13 @@ on:
     workflows: [Prettier]
     types:
       - completed
-
+    paths:
+      - 'src/b/**'
+      - 'src/index.js'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - '.github/workflows/pipeline-b.yml'
+      - '.github/workflows/prettier.yml'
 jobs:
   b:
     runs-on: ubuntu-latest

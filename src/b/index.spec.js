@@ -7,11 +7,7 @@ test('Calculator', async t => {
     assert.equal(multiplication(1, 2), 2)
   })
 
-  await t.test('Simple', () => {
+  await t.test('Division', () => {
     assert.equal(division(4, 2), 2)
-  })
-
-  await t.test('Complex', () => {
-    assert.equal(division(168, 2), 84)
   })
 })

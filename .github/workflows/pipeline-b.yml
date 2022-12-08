@@ -5,8 +5,8 @@ on:
     branches:
       - 'feature/*'
     paths:
-      - "src/b/**"
-      - "src/index.js"
+      - 'src/b/**'
+      - 'src/index.js'
 
 jobs:
   a:

@@ -10,8 +10,4 @@ test('Calculator', async t => {
   await t.test('Simple substraction', () => {
     assert.equal(substraction(3, 1), 2)
   })
-
-  await t.test('Complex substraction', () => {
-    assert.equal(substraction(192, 92), 100)
-  })
 })

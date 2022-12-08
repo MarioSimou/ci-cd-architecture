@@ -1,2 +1,2 @@
-export * from './a'
-export * from './b'
+export { addition, substraction } from './a'
+export { multiplication, division } from './b'

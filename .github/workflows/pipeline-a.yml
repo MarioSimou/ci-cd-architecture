@@ -3,10 +3,7 @@ name: Child Pipeline A
 on:
   push:
     branches:
-      - '*'
-    paths:
-      - './src/a/**'
-      - './src/index.js'
+      - 'feature/*'
 
 jobs:
   a:

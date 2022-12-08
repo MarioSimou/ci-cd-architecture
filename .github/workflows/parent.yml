@@ -6,13 +6,13 @@ on:
       - main
 
 jobs:
-  a:
+  children-a:
     uses: ./.github/workflows/pipeline-a.yml
     with:
       node_version: lts/hydrogen
       pnpm_version: 7.x
 
-  b:
+  children-b:
     uses: ./.github/workflows/pipeline-b.yml
     with:
       node_version: lts/hydrogen

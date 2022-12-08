@@ -1,6 +1,6 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import {addition, substraction} from './index.js'
+import { addition, substraction } from './index.js'
 
 test('Calculator', async t => {
   await t.test('Addition', () => {

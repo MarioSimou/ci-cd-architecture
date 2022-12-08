@@ -19,6 +19,8 @@ jobs:
 
   units:
     uses: ./.github/workflows/units.yml
+    needs: [prettier]
+    if: needs.prettier.result == 'success'
     with:
       module: a
       node_version: lts/hydrogen
@@ -26,6 +28,8 @@ jobs:
 
   release:
     uses: ./.github/workflows/release.yml
+    needs: [units]
+    if: needs.units.result == 'success'
     with:
       module: a
       node_version: lts/hydrogen

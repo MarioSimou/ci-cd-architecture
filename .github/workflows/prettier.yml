@@ -1,18 +1,12 @@
-name: Child Pipeline B
+name: Prettier
 
 on:
   push:
     branches:
-      - 'feature/*'
-    paths:
-      - 'src/b/**'
-      - 'src/index.js'
-      - '.github/workflows/pipeline-b.yml'
-      - 'package.json'
-      - 'pnpm-lock.yaml'
+      - '*'
 
 jobs:
-  b:
+  pretiter:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -37,11 +31,5 @@ jobs:
       - name: Install Dependencies
         run: pnpm i
 
-      - name: Build
-        run: sleep 20 && pnpm prettier:check
-
-      - name: Test
-        run: sleep 20 && pnpm test:unit:b
-
-      - name: Deploy
-        run: pnpm release:b
+      - name: Prettier
+        run: pnpm prettier:check

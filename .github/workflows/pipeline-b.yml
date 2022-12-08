@@ -1,0 +1,40 @@
+name: Child Pipeline B
+
+on:
+  workflow_run:
+    workflows: [Prettier]
+    types:
+      - completed
+
+jobs:
+  a:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: lts/hydrogen
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 7.x
+
+      - name: Get pnpm store path
+        id: pnpm-store-path
+        run: echo "PNPM_STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - name: Restore pnpm store
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.pnpm-store-path.outputs.PNPM_STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml')}}
+          restore-keys: ${{ runner.os }}-pnpm-store
+
+      - name: Install Dependencies
+        run: pnpm i
+
+      - name: Test
+        run: sleep 20 && pnpm test:unit:b
+
+      - name: Deploy
+        run: pnpm release:b
